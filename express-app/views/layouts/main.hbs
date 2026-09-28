@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{title}} — PlacementOrbit (Express + HBS)</title>
+  <script>
+    (function() {
+      var origDefine = Object.defineProperty;
+      Object.defineProperty = function(obj, prop, descriptor) {
+        if (obj === window && prop === 'fetch' && descriptor) {
+          var origGet = descriptor.get;
+          var origSet = descriptor.set;
+          var overrideVal;
+          return origDefine(obj, prop, {
+            configurable: true,
+            enumerable: descriptor.enumerable !== undefined ? descriptor.enumerable : true,
+            get: function() {
+              return overrideVal !== undefined ? overrideVal : (origGet ? origGet.call(this) : descriptor.value);
+            },
+            set: function(v) {
+              overrideVal = v;
+              if (origSet) origSet.call(this, v);
+            }
+          });
+        }
+        return origDefine.apply(this, arguments);
+      };
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{basePath}}/css/style.css" />
+</head>
+<body>
+  <!-- Top Architecture Switcher -->
+  <div class="orbit-app-switcher">
+    <div class="switcher-title">
+      <span class="pulse-neon">●</span>
+      <span>MISSION CONTROL ARCHITECTURE:</span>
+    </div>
+    <div class="switcher-tabs">
+      <a href="/http-app/" class="tab-btn" title="Pure Node.js built-in http module (Zero dependencies)">
+        <span>🛰️ Implementation A: Native HTTP</span>
+      </a>
+      <a href="{{basePath}}/" class="tab-btn active" title="Express.js + Handlebars (hbs) implementation">
+        <span>⚡ Implementation B: Express + HBS</span>
+        <span class="badge-mode">Active</span>
+      </a>
+      <a href="/http-app/api/companies" target="_blank" class="tab-btn" title="View JSON Endpoint from Implementation A">
+        <span>{ } GET /api/companies</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Navbar Partial -->
+  {{> navbar activeNav=activeNav basePath=basePath}}
+
+  <!-- Main Viewport Content -->
+  <main class="orbit-main">
+    {{{body}}}
+  </main>
+
+  <!-- Footer Partial -->
+  {{> footer basePath=basePath}}
+
+  <script src="{{basePath}}/js/main.js"></script>
+</body>
+</html>

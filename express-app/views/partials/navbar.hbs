@@ -1,0 +1,25 @@
+<nav class="orbit-nav">
+  <a href="{{basePath}}/" class="nav-brand">
+    <div class="nav-brand-icon">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">satellite_alt</span>
+    </div>
+    <div>
+      <span class="nav-brand-text">PlacementOrbit</span>
+    </div>
+  </a>
+
+  <div class="nav-links">
+    <a href="{{basePath}}/" class="nav-link {{#if (eq activeNav 'home')}}active{{/if}}">Home</a>
+    <a href="{{basePath}}/companies" class="nav-link {{#if (eq activeNav 'companies')}}active{{/if}}">Companies</a>
+    <a href="{{basePath}}/students" class="nav-link {{#if (eq activeNav 'students')}}active{{/if}}">Students</a>
+    <a href="{{basePath}}/jobs/google-deepmind" class="nav-link {{#if (eq activeNav 'jobs')}}active{{/if}}">Jobs</a>
+  </div>
+
+  <div class="nav-actions">
+    <span class="badge-mode">Express + hbs</span>
+    <a href="{{basePath}}/students" class="btn btn-ghost" style="padding: 4px 10px; font-size: 0.8rem;">
+      <span class="material-symbols-outlined" style="font-size: 16px;">military_tech</span>
+      <span>Cadet Desk</span>
+    </a>
+  </div>
+</nav>

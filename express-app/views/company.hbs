@@ -1,0 +1,109 @@
+<div style="margin-bottom: 1.5rem;">
+  <a href="{{basePath}}/companies" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan-bright); display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1rem;">
+    <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+    <span>Back to Companies</span>
+  </a>
+</div>
+
+<div class="bento-grid">
+  <!-- Left Dossier Column (Col 7) -->
+  <div class="card-glass-elevated col-7">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
+      <div>
+        <div style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 9999px; background: rgba(124, 58, 237, 0.2); border: 1px solid rgba(124, 58, 237, 0.4); margin-bottom: 6px;">
+          <span style="font-family: var(--font-mono); font-size: 0.68rem; color: #d2bbff;">VERIFIED ORBITAL PARTNER</span>
+        </div>
+        <h1 style="font-size: 2.2rem;">{{company.name}}</h1>
+        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan-bright); display: block; margin-top: 4px;">
+          {{company.industry}}
+        </span>
+        <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 4px;">
+          📍 {{company.location}} • <a href="{{company.website}}" target="_blank" style="color: var(--accent-cyan-bright); text-decoration: underline;">{{company.website}}</a>
+        </p>
+      </div>
+
+      <div style="width: 56px; height: 56px; border-radius: 16px; background: var(--surface-high); border: 1px solid var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: #fff; box-shadow: 0 0 16px rgba(93, 230, 255, 0.3);">
+        {{initials company.name}}
+      </div>
+    </div>
+
+    <div style="margin: 1.5rem 0; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08);">
+      <h3 style="font-size: 1.1rem; margin-bottom: 8px;">About The Mission</h3>
+      <p style="color: var(--text-muted); line-height: 1.7; font-size: 0.95rem;">
+        {{company.about}}
+      </p>
+    </div>
+
+    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.1rem;">Hiring Rounds Pipeline</h3>
+        <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan-bright);">{{company.rounds.length}} Phase Gate</span>
+      </div>
+
+      <div class="stepper-pipeline">
+        {{#each company.rounds}}
+          <div class="step-item {{#if (eq @index 0)}}active{{/if}}">
+            <div class="step-marker">{{@index}}</div>
+            <div style="padding-top: 4px;">
+              <h4 style="font-size: 0.92rem; color: #fff;">{{this}}</h4>
+              <span style="font-size: 0.75rem; color: var(--text-dim); font-family: var(--font-mono);">
+                Assessment Stage {{@index}}
+              </span>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+      <a href="{{basePath}}/jobs/{{company.id}}" class="btn btn-primary" style="flex: 1;">
+        <span class="material-symbols-outlined" style="font-size: 18px;">work</span>
+        <span>View Active Openings ({{jobs.length}})</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Right Summary Column (Col 5) -->
+  <div class="card-glass col-5">
+    <h3 style="font-size: 1.2rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
+      Trajectory Openings ({{jobs.length}})
+    </h3>
+
+    {{#if jobs.length}}
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        {{#each jobs}}
+          <div style="background: rgba(9, 13, 28, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+              <h4 style="font-size: 0.95rem; color: #fff;">{{this.role}}</h4>
+              <span class="badge {{#if (eq this.status 'Open')}}badge-open{{else}}badge-closed{{/if}}">
+                <span class="badge-dot"></span>
+                {{this.status}}
+              </span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim);">
+              <span>Cutoff: ≥{{this.minCgpa}} CGPA</span>
+              <span style="color: var(--accent-cyan-bright); font-weight: 700;">{{formatPackage this.package}}</span>
+            </div>
+          </div>
+        {{/each}}
+
+        <a href="{{basePath}}/jobs/{{company.id}}" class="btn btn-primary" style="margin-top: 1rem;">
+          Inspect All Jobs at {{company.name}}
+        </a>
+      </div>
+    {{else}}
+      <div style="text-align: center; padding: 2rem 1rem;">
+        <div class="radar-empty">
+          <span class="material-symbols-outlined" style="font-size: 32px; color: var(--accent-cyan-bright);">radar</span>
+        </div>
+        <h4 style="font-size: 1rem; margin-bottom: 6px;">Zero Openings in this Sector</h4>
+        <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 1rem;">
+          {{company.name}} does not have open trajectories posted at this time.
+        </p>
+        <a href="{{basePath}}/jobs/{{company.id}}" class="btn btn-ghost" style="font-size: 0.8rem;">
+          View Empty State Screen →
+        </a>
+      </div>
+    {{/if}}
+  </div>
+</div>

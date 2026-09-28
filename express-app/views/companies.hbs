@@ -1,0 +1,21 @@
+<div style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+  <div>
+    <div style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 9999px; background: rgba(37, 41, 58, 0.7); border: 1px solid rgba(93, 230, 255, 0.3); margin-bottom: 8px;">
+      <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent-cyan-bright);"></span>
+      <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan-bright);">ENTERPRISE DOCKS</span>
+    </div>
+    <h1 style="font-size: 2.2rem;">Recruiting Companies</h1>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">Rendered using Handlebars partial <code>&#123;&#123;&gt; company-card&#125;&#125;</code> and <code>&#123;&#123;#each&#125;&#125;</code> loop.</p>
+  </div>
+
+  <div>
+    <input type="text" id="telemetrySearch" placeholder="Filter company name or industry..." 
+           style="background: rgba(9, 13, 28, 0.8); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 8px 14px; font-family: var(--font-mono); font-size: 0.8rem; color: #fff; width: 280px;" />
+  </div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem;">
+  {{#each companies}}
+    {{> company-card this}}
+  {{/each}}
+</div>

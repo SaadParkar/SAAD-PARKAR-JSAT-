@@ -1,0 +1,35 @@
+<div class="card-glass" data-filter-item style="display: flex; flex-direction: column; justify-content: space-between;">
+  <div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+      <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--surface-high); border: 1px solid rgba(124, 58, 237, 0.4); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: #d2bbff;">
+        {{initials this.name}}
+      </div>
+      <span class="badge badge-open">
+        <span class="badge-dot"></span>
+        {{this.rounds.length}} Phase Gates
+      </span>
+    </div>
+
+    <h2 style="font-size: 1.35rem; margin-bottom: 4px;">{{this.name}}</h2>
+    <span style="display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan-bright); margin-bottom: 8px;">
+      {{this.industry}}
+    </span>
+    <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 12px; display: flex; align-items: center; gap: 4px;">
+      <span class="material-symbols-outlined" style="font-size: 15px;">location_on</span>
+      <span>{{this.location}}</span>
+    </p>
+
+    <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1rem;">
+      {{this.about}}
+    </p>
+  </div>
+
+  <div style="display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem;">
+    <a href="{{@root.basePath}}/company/{{this.id}}" class="btn btn-ghost" style="flex: 1; font-size: 0.82rem;">
+      <span>Company Dossier</span>
+    </a>
+    <a href="{{@root.basePath}}/jobs/{{this.id}}" class="btn btn-primary" style="flex: 1; font-size: 0.82rem;">
+      <span>View Jobs</span>
+    </a>
+  </div>
+</div>

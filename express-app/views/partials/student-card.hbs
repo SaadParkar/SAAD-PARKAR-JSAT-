@@ -1,0 +1,55 @@
+<div class="card-glass" data-filter-item style="display: flex; flex-direction: column; justify-content: space-between; border-color: {{#if this.placed}}rgba(16, 185, 129, 0.3){{else}}rgba(255, 255, 255, 0.08){{/if}};">
+  <div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+      <div>
+        <h4 style="font-size: 1.1rem; color: #fff;">{{this.name}}</h4>
+        <span style="font-size: 0.75rem; color: var(--text-dim);">{{this.branch}}</span>
+      </div>
+
+      {{#if this.placed}}
+        <span class="badge badge-placed">
+          <span class="badge-dot"></span>
+          PLACED
+        </span>
+      {{else}}
+        <span class="badge badge-not-placed">
+          <span class="badge-dot"></span>
+          NOT PLACED
+        </span>
+      {{/if}}
+    </div>
+
+    <div style="background: rgba(9, 13, 28, 0.7); border-radius: 10px; padding: 10px; margin: 10px 0;">
+      <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem;">
+        <span style="color: var(--text-dim);">CGPA: <strong style="color: #fff;">{{this.cgpa}}</strong></span>
+        <span style="font-weight: 700; color: {{#if this.placed}}var(--status-placed){{else}}var(--text-dim){{/if}};">
+          {{formatPackage this.package}}
+        </span>
+      </div>
+
+      {{#if this.placed}}
+        <span style="font-size: 0.72rem; color: var(--accent-cyan-bright); display: block; margin-top: 4px;">
+          ✓ Placed at {{this.placedCompanyId}}
+        </span>
+      {{/if}}
+
+      {{#unless this.placed}}
+        <span style="font-size: 0.72rem; color: #f87171; display: block; margin-top: 4px;">
+          ⚡ Trajectory Seeking: Open for Direct Shortlists
+        </span>
+      {{/unless}}
+    </div>
+
+    <div style="margin-top: 6px;">
+      {{#each this.skills}}
+        <span class="skill-chip">{{this}}</span>
+      {{/each}}
+    </div>
+  </div>
+
+  <div style="margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 8px;">
+    <a href="{{@root.basePath}}/student/{{this.id}}" class="btn btn-ghost" style="width: 100%; font-size: 0.8rem;">
+      View Cadet Dossier →
+    </a>
+  </div>
+</div>

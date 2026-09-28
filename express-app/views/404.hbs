@@ -1,0 +1,61 @@
+<div style="text-align: center; max-width: 780px; margin: 1rem auto 3rem auto;">
+  <div style="display: inline-flex; align-items: center; gap: 8px; padding: 4px 14px; border-radius: 9999px; background: rgba(200, 26, 66, 0.2); border: 1px solid rgba(200, 26, 66, 0.4); margin-bottom: 1.2rem;">
+    <span style="width: 8px; height: 8px; border-radius: 50%; background: #f43f5e;" class="pulse-neon"></span>
+    <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #ffb2b7; letter-spacing: 0.08em; text-transform: uppercase;">
+      ERR_TRAJECTORY_SECTOR_NOT_FOUND // VECTOR ANOMALY
+    </span>
+  </div>
+
+  <h1 class="glitch-title">404 // LOST IN ORBIT</h1>
+  
+  <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin: 1.2rem auto 2rem auto; max-width: 580px;">
+    Cadet, your telemetry signal drifted outside charted mission coordinates. The route <code style="color: var(--accent-cyan-bright); font-family: var(--font-mono);">{{url}}</code> has fallen into a quantum gravity well or does not exist in this sector.
+  </p>
+
+  <!-- Levitating Astronaut Illustration & Portal -->
+  <div style="position: relative; width: 220px; height: 220px; margin: 0 auto 2rem auto; display: flex; align-items: center; justify-content: center;">
+    <div style="position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(93, 230, 255, 0.3);" class="pulse-neon"></div>
+    <div style="position: absolute; inset: 15px; border-radius: 50%; border: 1px dashed rgba(124, 58, 237, 0.4);"></div>
+    <div style="position: absolute; inset: 30px; border-radius: 50%; background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, rgba(9, 13, 28, 0.9) 70%);"></div>
+    
+    <div class="astro-float" style="position: relative; z-index: 2;">
+      <span class="material-symbols-outlined" style="font-size: 72px; color: var(--accent-cyan-bright); text-shadow: 0 0 20px #5de6ff;">
+        astro_space_center
+      </span>
+    </div>
+  </div>
+
+  <!-- Diagnostic Daemon Box -->
+  <div class="terminal-box" style="text-align: left; max-width: 540px; margin: 0 auto 2rem auto;">
+    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 6px; margin-bottom: 8px;">
+      <span>EXPRESS_DIAGNOSTIC_DAEMON_v4.2</span>
+      <span style="color: var(--accent-cyan-bright);">BEACON: TRANSLATING</span>
+    </div>
+    <div class="terminal-row">
+      <span>REQUESTED_URL:</span>
+      <strong style="color: #fff;">{{url}}</strong>
+    </div>
+    <div class="terminal-row">
+      <span>HTTP_CODE:</span>
+      <strong style="color: #f43f5e;">404 (UNREACHABLE_SECTOR)</strong>
+    </div>
+    <div class="terminal-row">
+      <span>TEMPLATE_ENGINE:</span>
+      <span style="color: var(--accent-cyan-bright);">Handlebars (hbs)</span>
+    </div>
+  </div>
+
+  <!-- Recovery Actions -->
+  <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+    <a href="{{basePath}}/" class="btn btn-primary">
+      <span class="material-symbols-outlined" style="font-size: 18px;">rocket_launch</span>
+      <span>Return to Base (Home)</span>
+    </a>
+    <a href="{{basePath}}/companies" class="btn btn-ghost">
+      <span>Companies Hub</span>
+    </a>
+    <a href="{{basePath}}/students" class="btn btn-ghost">
+      <span>Cadet Leaderboard</span>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<div style="margin-bottom: 1.5rem;">
+  <a href="{{basePath}}/companies" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan-bright); display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1rem;">
+    <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+    <span>Back to Companies</span>
+  </a>
+
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+    <div>
+      <div style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 9999px; background: rgba(37, 41, 58, 0.7); border: 1px solid rgba(93, 230, 255, 0.3); margin-bottom: 8px;">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent-cyan-bright);"></span>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan-bright);">OPPORTUNITY MATRIX</span>
+      </div>
+      <h1 style="font-size: 2.2rem;">Jobs at {{company.name}}</h1>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">Active career trajectories and recruitment gates for {{company.name}}.</p>
+    </div>
+
+    <div style="display: flex; gap: 8px;">
+      <a href="{{basePath}}/company/{{company.id}}" class="btn btn-ghost">
+        <span>Company Dossier</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+{{#if jobs.length}}
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem;">
+    {{#each jobs}}
+      <div class="card-glass" style="display: flex; flex-direction: column; justify-content: space-between; border-color: {{#if (eq this.status 'Open')}}rgba(93, 230, 255, 0.25){{else}}rgba(255,255,255,0.08){{/if}};">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+            {{#if (eq this.status 'Open')}}
+              <span class="badge badge-open">
+                <span class="badge-dot"></span>
+                OPEN
+              </span>
+            {{else}}
+              <span class="badge badge-closed">
+                <span class="badge-dot"></span>
+                CLOSED
+              </span>
+            {{/if}}
+
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim);">
+              Deadline: {{this.deadline}}
+            </span>
+          </div>
+
+          <h3 style="font-size: 1.25rem; margin-bottom: 6px; color: #fff;">{{this.role}}</h3>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan-bright); display: block; margin-bottom: 12px;">
+            Type: {{this.type}} • Min CGPA: ≥{{this.minCgpa}}
+          </span>
+
+          <div style="background: rgba(9, 13, 28, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase;">Compensation</span>
+              <div class="telemetry-val" style="font-size: 1.5rem; color: var(--accent-cyan-bright);">
+                {{formatPackage this.package}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem;">
+          {{#if (eq this.status 'Open')}}
+            <button class="btn btn-primary" style="width: 100%;" onclick="showToast('Application vector initialized for {{this.role}}!')">
+              <span class="material-symbols-outlined" style="font-size: 18px;">rocket_launch</span>
+              <span>Apply Trajectory</span>
+            </button>
+          {{else}}
+            <button class="btn btn-ghost" style="width: 100%; opacity: 0.6; cursor: not-allowed;" disabled>
+              <span>Applications Closed</span>
+            </button>
+          {{/if}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}
+
+{{#unless jobs.length}}
+  <!-- Evocative Empty State Demonstrated on Zero-Job Company (Tesla) -->
+  <div class="card-glass-elevated" style="text-align: center; padding: 3.5rem 1.5rem; max-width: 720px; margin: 2rem auto;">
+    <div class="radar-empty">
+      <span class="material-symbols-outlined" style="font-size: 40px; color: var(--accent-cyan-bright);">radar</span>
+    </div>
+    
+    <div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 9999px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); margin-bottom: 12px;">
+      <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--status-closed);"></span>
+      <span style="font-family: var(--font-mono); font-size: 0.7rem; color: #f87171; text-transform: uppercase;">
+        SECTOR QUIET // ZERO RECRUITMENT VECTORS
+      </span>
+    </div>
+
+    <h2 style="font-size: 1.8rem; margin-bottom: 10px;">No Active Trajectories Detected in this Sector</h2>
+    <p style="color: var(--text-muted); max-width: 480px; margin: 0 auto 1.5rem auto; font-size: 0.95rem; line-height: 1.6;">
+      All current placement allocations for <strong>{{company.name}}</strong> have either completed their admission quota or have not yet entered the orbital recruitment window.
+    </p>
+
+    <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+      <button class="btn btn-primary" onclick="showToast('Automated Radar Ping enabled for {{company.name}}!')">
+        <span class="material-symbols-outlined" style="font-size: 18px;">notifications_active</span>
+        <span>Configure Radar Alert 🔔</span>
+      </button>
+      <a href="{{basePath}}/companies" class="btn btn-ghost">
+        <span>View All Companies</span>
+      </a>
+    </div>
+  </div>
+{{/unless}}

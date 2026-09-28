@@ -1,0 +1,13 @@
+{
+  "name": "placement-orbit-express-app",
+  "version": "1.0.0",
+  "description": "Implementation B: Express.js + Handlebars (hbs) engine for PlacementOrbit",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "hbs": "^4.2.0"
+  }
+}

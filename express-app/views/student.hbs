@@ -1,0 +1,152 @@
+<div style="margin-bottom: 1.5rem;">
+  <a href="{{basePath}}/students" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan-bright); display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1rem;">
+    <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+    <span>Back to Cadets Flight Deck</span>
+  </a>
+</div>
+
+<div class="bento-grid">
+  <!-- Cadet Hero Profile (Col 7) -->
+  <div class="card-glass-elevated col-7">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <div style="width: 64px; height: 64px; border-radius: 18px; background: var(--surface-high); border: 2px solid var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: #fff; box-shadow: 0 0 16px rgba(93, 230, 255, 0.35);">
+          {{initials student.name}}
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <h1 style="font-size: 2rem;">{{student.name}}</h1>
+            {{#if student.placed}}
+              <span class="badge badge-placed">
+                <span class="badge-dot"></span>
+                PLACED
+              </span>
+            {{else}}
+              <span class="badge badge-not-placed">
+                <span class="badge-dot"></span>
+                NOT PLACED
+              </span>
+            {{/if}}
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim); display: block; margin-top: 2px;">
+            {{student.branch}} // CADET ID: {{student.id}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conditional Placement Details (if / else) -->
+    {{#if student.placed}}
+      <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 14px; padding: 1.2rem; margin: 1.2rem 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--status-placed); font-weight: 700; text-transform: uppercase;">
+            ✓ OFFICIAL PLACEMENT CONFIRMED
+          </span>
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; color: #fff;">
+            Offer Dossier Verified
+          </span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+          <div>
+            <span style="font-size: 1.2rem; font-weight: 700; color: #fff; display: block;">
+              {{#if company}}{{company.name}}{{else}}{{student.placedCompanyId}}{{/if}}
+            </span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Assigned Global Trajectory Dock</span>
+          </div>
+          <div style="text-align: right;">
+            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase;">ANNUAL VALUATION</span>
+            <div class="telemetry-val" style="font-size: 1.8rem; color: var(--accent-cyan-bright); line-height: 1;">
+              {{formatPackage student.package}}
+            </div>
+          </div>
+        </div>
+      </div>
+    {{else}}
+      <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 14px; padding: 1.2rem; margin: 1.2rem 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #f87171; font-weight: 700; text-transform: uppercase;">
+            ACTIVE FLIGHT SEEKING TRAJECTORY
+          </span>
+          <span class="badge badge-process">In Assessment Rounds</span>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          Cadet is actively interviewing and open for direct campus shortlists. Tech stack matches automated interview vectors.
+        </p>
+      </div>
+    {{/if}}
+
+    <!-- Unless helper demonstration -->
+    {{#unless student.placed}}
+      <div style="background: rgba(124, 58, 237, 0.1); border: 1px dashed rgba(124, 58, 237, 0.4); border-radius: 10px; padding: 10px 14px; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #d2bbff;">
+        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--accent-cyan-bright);">crisis_alert</span>
+        <span>Priority Radar: Profile prioritized for upcoming enterprise interview drives.</span>
+      </div>
+    {{/unless}}
+
+    <!-- Core Technical Competencies -->
+    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08);">
+      <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Core Technical Competencies</h3>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        {{#each student.skills}}
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-family: var(--font-mono); margin-bottom: 4px;">
+              <span>{{this}}</span>
+              <span style="color: var(--accent-cyan-bright);">Verified Skill</span>
+            </div>
+            <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden;">
+              <div style="height: 100%; width: 90%; background: linear-gradient(90deg, var(--accent-violet), var(--accent-cyan)); border-radius: 3px;"></div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column (Col 5): CGPA Gauge & Academic Record -->
+  <div class="card-glass col-5">
+    <h3 style="font-size: 1.2rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
+      Academic Velocity Telemetry
+    </h3>
+
+    <div style="display: flex; flex-direction: column; align-items: center; margin: 1.5rem 0;">
+      <div class="radial-meter" style="width: 160px; height: 160px;">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="50" fill="transparent" stroke="rgba(255,255,255,0.06)" stroke-width="10"></circle>
+          <circle cx="60" cy="60" r="50" fill="transparent" stroke="url(#studentG)" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="{{gaugeOffset}}" stroke-linecap="round"></circle>
+          <defs>
+            <linearGradient id="studentG" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#5DE6FF"></stop>
+              <stop offset="100%" stop-color="#7C3AED"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="radial-meter-content">
+          <span class="telemetry-val" style="font-size: 2.2rem; color: #fff;">{{student.cgpa}}</span>
+          <span style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-dim);">CUMULATIVE CGPA</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: rgba(9, 13, 28, 0.7); border-radius: 12px; padding: 12px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 1rem;">
+      <div class="terminal-row">
+        <span>Cadet Status:</span>
+        <strong style="color: {{#if student.placed}}var(--status-placed){{else}}var(--accent-cyan-bright){{/if}};">
+          {{#if student.placed}}Flight Confirmed{{else}}Active Seeking{{/if}}
+        </strong>
+      </div>
+      <div class="terminal-row">
+        <span>Major Wing:</span>
+        <span>{{student.branch}}</span>
+      </div>
+      <div class="terminal-row">
+        <span>Class:</span>
+        <span>Batch of 2025</span>
+      </div>
+    </div>
+
+    <button class="btn btn-ghost" style="width: 100%;" onclick="showToast('Cadet record encrypted & synchronized to orbital archive.')">
+      <span class="material-symbols-outlined" style="font-size: 16px;">share</span>
+      <span>Share Cadet Verification URL</span>
+    </button>
+  </div>
+</div>

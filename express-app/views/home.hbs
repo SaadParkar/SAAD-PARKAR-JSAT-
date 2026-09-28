@@ -1,0 +1,184 @@
+<!-- HERO BANNER -->
+<div style="margin-bottom: 2rem;">
+  <div style="display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 9999px; background: rgba(37, 41, 58, 0.7); border: 1px solid rgba(124, 58, 237, 0.4); margin-bottom: 1rem;">
+    <span style="width: 8px; height: 8px; border-radius: 50%; background: #d2bbff; box-shadow: 0 0 8px #7c3aed;" class="pulse-neon"></span>
+    <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #d2bbff; letter-spacing: 0.08em; font-weight: 600;">MISSION CONTROL // EXPRESS.JS + HBS ENGINE</span>
+    <span style="color: rgba(255,255,255,0.3);">•</span>
+    <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan-bright);">SERVER-SIDE TEMPLATES</span>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem;">
+    <div style="max-width: 720px;">
+      <h1 style="font-size: 2.8rem; line-height: 1.15; margin-bottom: 0.8rem;">
+        Where Campus Meets Career in <span class="text-gradient">Orbital Precision</span>
+      </h1>
+      <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">
+        Server-rendered Handlebars architecture. Track tier-segmented recruitment drives, automated shortlisting vectors, and verified career milestones in real time.
+      </p>
+    </div>
+
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <a href="{{basePath}}/companies" class="btn btn-primary">
+        <span class="material-symbols-outlined" style="font-size: 18px;">rocket_launch</span>
+        <span>Explore Companies</span>
+      </a>
+      <a href="{{basePath}}/students" class="btn btn-ghost">
+        <span class="material-symbols-outlined" style="font-size: 18px;">groups</span>
+        <span>View Students</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTINUOUS MARQUEE COMPANY TICKER -->
+<div class="marquee-container">
+  <div class="marquee-track">
+    {{#each companies}}
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="badge-dot" style="background: var(--accent-cyan-bright); box-shadow: 0 0 6px #5de6ff;"></span>
+        <strong>{{this.name}}</strong>
+        <span style="color: var(--text-dim);">[{{this.industry}}]</span>
+      </div>
+    {{/each}}
+    {{#each companies}}
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="badge-dot" style="background: var(--accent-violet); box-shadow: 0 0 6px #7c3aed;"></span>
+        <strong>{{this.name}}</strong>
+        <span style="color: var(--text-dim);">[{{this.industry}}]</span>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+<!-- BENTO GRID SYSTEM -->
+<div class="bento-grid">
+  <!-- BENTO 1: Propulsion Telemetry (Col 7) -->
+  <div class="card-glass col-7" style="display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="padding: 8px; border-radius: 8px; background: var(--surface-high); color: var(--accent-cyan-bright);">
+            <span class="material-symbols-outlined" style="font-size: 20px;">query_stats</span>
+          </div>
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent-cyan-bright); letter-spacing: 0.08em; text-transform: uppercase;">Propulsion Telemetry</span>
+            <h2 style="font-size: 1.3rem;">Campus Placement Orbit Index</h2>
+          </div>
+        </div>
+        <span class="badge badge-placed">
+          <span class="badge-dot"></span>
+          {{stats.totalStudents}} Cadets Enrolled
+        </span>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 1.5rem; margin: 1.5rem 0;">
+        <!-- Circular Arc Gauge -->
+        <div class="radial-meter">
+          <svg viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="transparent" stroke="rgba(255,255,255,0.06)" stroke-width="10"></circle>
+            <circle cx="60" cy="60" r="50" fill="transparent" stroke="url(#arcG)" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="{{stats.gaugeOffset}}" stroke-linecap="round"></circle>
+            <defs>
+              <linearGradient id="arcG" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7C3AED"></stop>
+                <stop offset="100%" stop-color="#5DE6FF"></stop>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="radial-meter-content">
+            <span class="telemetry-val" style="font-size: 2rem; color: #fff;" data-counter data-target="{{stats.placementRate}}" data-decimals="1" data-suffix="%">{{stats.placementRate}}%</span>
+            <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-cyan-bright);">TRAJECTORY ACHIEVED</span>
+          </div>
+        </div>
+
+        <!-- Metric KPI Pillars -->
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; flex: 1; min-width: 240px;">
+          <div style="background: rgba(9, 13, 28, 0.6); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06);">
+            <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; display: block;">Total Placed</span>
+            <span class="telemetry-val" style="font-size: 1.6rem; color: var(--accent-cyan-bright);">{{stats.placedCount}} / {{stats.totalStudents}}</span>
+            <span style="display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 2px;">2 In Orbit, 2 Seeking</span>
+          </div>
+
+          <div style="background: rgba(9, 13, 28, 0.6); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06);">
+            <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; display: block;">Highest CTC Orbit</span>
+            <span class="telemetry-val" style="font-size: 1.6rem; color: #d2bbff;">{{formatPackage stats.highestPackage}}</span>
+            <span style="display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 2px;">Google DeepMind</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem; margin-top: 1rem; font-size: 0.82rem;">
+      <span style="color: var(--text-muted);">Rendered dynamically with Handlebars Partials &amp; Custom Helpers</span>
+      <a href="{{basePath}}/students" style="color: var(--accent-cyan-bright); font-family: var(--font-mono); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
+        <span>AUDIT CADET MATRIX</span>
+        <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- BENTO 2: Partner Enterprise Docks (Col 5) -->
+  <div class="card-glass col-5" style="display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 1rem; margin-bottom: 1.2rem;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="padding: 8px; border-radius: 8px; background: var(--surface-high); color: var(--accent-cyan-bright);">
+            <span class="material-symbols-outlined" style="font-size: 20px;">hub</span>
+          </div>
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent-cyan-bright); letter-spacing: 0.08em; text-transform: uppercase;">Enterprise Docks</span>
+            <h2 style="font-size: 1.2rem;">Active Hiring Partners</h2>
+          </div>
+        </div>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim);">{{companies.length}} TOTAL</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        {{#each companies}}
+          <div style="background: rgba(9, 13, 28, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <a href="{{@root.basePath}}/company/{{this.id}}" style="font-weight: 700; color: #fff; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;">
+                <span>{{this.name}}</span>
+                <span class="material-symbols-outlined" style="font-size: 14px; color: var(--accent-cyan-bright);">launch</span>
+              </a>
+              <span style="font-size: 0.75rem; color: var(--text-dim); display: block;">{{this.location}}</span>
+            </div>
+            <div style="text-align: right;">
+              <a href="{{@root.basePath}}/jobs/{{this.id}}" style="display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan-bright);">
+                View Jobs →
+              </a>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <div style="margin-top: 1.5rem; text-align: center;">
+      <a href="{{basePath}}/companies" class="btn btn-ghost" style="width: 100%;">
+        <span>Explore All Companies</span>
+        <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- BENTO 3: Student Roster Cards (Col 12) using partial -->
+  <div class="card-glass col-12">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 1rem; margin-bottom: 1.2rem;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="padding: 8px; border-radius: 8px; background: var(--surface-high); color: var(--accent-cyan-bright);">
+          <span class="material-symbols-outlined" style="font-size: 20px;">dynamic_feed</span>
+        </div>
+        <div>
+          <span style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent-cyan-bright); letter-spacing: 0.08em; text-transform: uppercase;">Cadet Cohort</span>
+          <h2 style="font-size: 1.3rem;">Cadet Roster (Rendered with {{> student-card}} Partial)</h2>
+        </div>
+      </div>
+      <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim);">4 STUDENTS</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+      {{#each students}}
+        {{> student-card this}}
+      {{/each}}
+    </div>
+  </div>
+</div>

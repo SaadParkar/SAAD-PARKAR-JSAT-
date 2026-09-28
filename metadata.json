@@ -1,0 +1,6 @@
+{
+  "name": "PlacementOrbit — College Placement Management System",
+  "description": "Mission Control for Careers: Dual Node.js Architecture featuring pure built-in http module and Express.js + Handlebars implementations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

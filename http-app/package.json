@@ -1,0 +1,10 @@
+{
+  "name": "placement-orbit-http-app",
+  "version": "1.0.0",
+  "description": "Implementation A: Node built-in http module only (No external dependencies)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {}
+}

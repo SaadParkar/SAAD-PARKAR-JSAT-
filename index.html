@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlacementOrbit — College Placement Management System</title>
+    <meta name="description" content="Mission Control for Careers: Dual Node.js Architecture featuring pure built-in http module and Express.js + Handlebars implementations." />
+    <meta property="og:title" content="PlacementOrbit — College Placement Management System" />
+    <meta property="og:description" content="Mission Control for Careers: Dual Node.js Architecture featuring pure built-in http module and Express.js + Handlebars implementations." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      (function() {
+        var origDefine = Object.defineProperty;
+        Object.defineProperty = function(obj, prop, descriptor) {
+          if (obj === window && prop === 'fetch' && descriptor) {
+            var origGet = descriptor.get;
+            var origSet = descriptor.set;
+            var overrideVal;
+            return origDefine(obj, prop, {
+              configurable: true,
+              enumerable: descriptor.enumerable !== undefined ? descriptor.enumerable : true,
+              get: function() {
+                return overrideVal !== undefined ? overrideVal : (origGet ? origGet.call(this) : descriptor.value);
+              },
+              set: function(v) {
+                overrideVal = v;
+                if (origSet) origSet.call(this, v);
+              }
+            });
+          }
+          return origDefine.apply(this, arguments);
+        };
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
